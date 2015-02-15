@@ -1,0 +1,107 @@
+apply plugin: 'war'
+apply plugin: 'eclipse'
+apply plugin: 'flyway'
+apply from: 'https://raw.github.com/akhikhl/gretty/master/pluginScripts/gretty.plugin' //Gretty (jetty plugin)
+
+loadProperties("src/main/resources/project.properties")
+
+buildscript {
+    repositories {
+        mavenLocal()
+        mavenCentral()
+        jcenter()
+	}
+
+	dependencies {
+		//Flyway
+		classpath 'org.flywaydb:flyway-gradle-plugin:3.1'
+        classpath 'com.oracle:ojdbc6:11.2.0.4'
+	}
+}
+
+// tag::repositories[]
+repositories { 
+    mavenLocal()
+    mavenCentral()
+}
+// end::repositories[]
+
+// tag::jar[]
+/*
+sourceCompatibility = 1.7
+version = '0.0.1'
+jar {
+	manifest {
+	    attributes 'Implementation-Title': 'Voluntarios',
+	    		   'Implementation-Version':  version
+    }
+}*/
+// end::jar[]
+
+// tag::dependencies[]
+dependencies {
+    compile 'joda-time:joda-time:2.2'
+    compile 'com.oracle:ojdbc6:11.2.0.4'
+    compile 'javax.servlet:javax.servlet-api:3.1.0'
+    
+    //Spring
+    compile (group: 'org.springframework', name: 'spring-core', version: project.ext['spring.version']) {
+    	exclude group: 'commons-logging', module: 'commons-logging'
+    }
+    compile group: 'org.springframework', name: 'spring-web', version: project.ext['spring.version']
+    compile group: 'org.springframework', name:'spring-webmvc', version: project.ext['spring.version']
+    compile group: 'org.springframework', name:'spring-orm', version: project.ext['spring.version']
+    compile group: 'org.springframework.data', name: 'spring-data-jpa', version: '1.7.1.RELEASE'
+    //compile 'org.springframework.data:spring-data-rest-webmvc:2.2.1.RELEASE'
+    
+    //Hibernate
+    compile (group: 'org.hibernate', name: 'hibernate-core', version: project.ext['hibernate.version']) {
+    	exclude group: "org.slf4j", module: "slf4j-log4j12"
+    	exclude group: 'org.slf4j', module: 'slf4j-api'
+    }
+    compile group: 'org.hibernate', name: 'hibernate-entitymanager', version: project.ext['hibernate.version']
+    
+    compile group: 'org.slf4j', name: 'jcl-over-slf4j', version: '1.7.5'
+    compile group: 'ch.qos.logback', name: 'logback-classic', version: '1.1.2' //Logback
+    compile group: 'ch.qos.logback', name: 'logback-core', version: '1.1.2'
+    
+    //Thymeleaf
+    compile group: 'org.thymeleaf', name: 'thymeleaf', version: project.ext['thymeleaf.version']
+    compile group: 'org.thymeleaf', name: 'thymeleaf-spring4', version: project.ext['thymeleaf.version']
+    
+    //Jackson databind
+    compile group: 'com.fasterxml.jackson.core', name: 'jackson-databind', version: '2.5.0'
+    compile group: 'com.fasterxml.jackson.datatype', name: 'jackson-datatype-hibernate4', version: '2.5.0'
+    
+    
+    //Tests
+    compile group: 'junit', name: 'junit', version: '4.12'
+    compile group: 'org.springframework', name: 'spring-test', version: project.ext['spring.version']
+}
+// end::dependencies[]
+
+// tag::wrapper[]
+task wrapper(type: Wrapper) {
+    gradleVersion = '1.11'
+}
+// end::wrapper[]
+
+flyway {
+    user = project.ext['db.user']
+    password = project.ext['db.password']
+    url = project.ext['db.url']
+}
+
+def loadProperties(String sourceFileName) {
+    def config = new Properties()
+    def propFile = file(sourceFileName)
+    System.out.println("Loading properties file: " + propFile.absolutePath)
+    if (propFile.canRead()) {
+        config.load(new FileInputStream(propFile))
+        for (Map.Entry property in config) {
+            System.out.println("setting " + property.key)
+            project.ext[property.key] = property.value;
+        }
+    }
+    else System.err.println("can't read property file")
+}
