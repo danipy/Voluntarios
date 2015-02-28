@@ -16,7 +16,7 @@ import org.springframework.transaction.annotation.Transactional;
 @Service("eventService")
 public class EventProvider implements EventService {
 
-	final static Logger LOG = LoggerFactory
+	static final Logger LOG = LoggerFactory
 			.getLogger(EventProvider.class);
 
 	@Autowired
