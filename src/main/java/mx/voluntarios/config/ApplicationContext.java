@@ -9,10 +9,13 @@ import org.springframework.context.annotation.Import;
 import org.springframework.context.support.ResourceBundleMessageSource;
 import org.springframework.data.web.PageableHandlerMethodArgumentResolver;
 import org.springframework.data.web.config.EnableSpringDataWebSupport;
+import org.springframework.http.MediaType;
 import org.springframework.http.converter.HttpMessageConverter;
 import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
 import org.springframework.web.method.support.HandlerMethodArgumentResolver;
+import org.springframework.web.servlet.config.annotation.ContentNegotiationConfigurer;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
+import org.springframework.web.servlet.config.annotation.PathMatchConfigurer;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 
@@ -33,6 +36,14 @@ public class ApplicationContext extends WebMvcConfigurerAdapter {
 		registry.addResourceHandler("/partials/**").addResourceLocations("/WEB-INF/partials/");
 	}
 	
+	// Provides internationalization of messages
+	@Bean
+	public ResourceBundleMessageSource messageSource() {
+		ResourceBundleMessageSource source = new ResourceBundleMessageSource();
+		source.setBasename("messages");
+		return source;
+	}
+
 	@Override
 	public void configureMessageConverters(List<HttpMessageConverter<?>> converters) {
 		converters.add(jacksonMessageConverter());
@@ -45,20 +56,25 @@ public class ApplicationContext extends WebMvcConfigurerAdapter {
 		argumentResolvers.add(new PageableHandlerMethodArgumentResolver());
 	};
 
-	// Provides internationalization of messages
-	@Bean
-	public ResourceBundleMessageSource messageSource() {
-		ResourceBundleMessageSource source = new ResourceBundleMessageSource();
-		source.setBasename("messages");
-		return source;
+	@Override
+	public void configurePathMatch(PathMatchConfigurer configurer) {
+		configurer.setUseRegisteredSuffixPatternMatch(true);
+	};
+
+	@Override
+	public void configureContentNegotiation(ContentNegotiationConfigurer configurer) {
+		configurer.defaultContentType(MediaType.TEXT_HTML);
+		configurer.mediaType(".json", MediaType.parseMediaType(MediaType.APPLICATION_JSON_VALUE));
+		super.configureContentNegotiation(configurer);
 	}
 
 	public MappingJackson2HttpMessageConverter jacksonMessageConverter() {
-		MappingJackson2HttpMessageConverter messageConverter = new MappingJackson2HttpMessageConverter();
+		MappingJackson2HttpMessageConverter messageConverter = 
+				new MappingJackson2HttpMessageConverter();
+
 		ObjectMapper mapper = new ObjectMapper();
 
-		mapper.registerModule(new Hibernate4Module()); // Support for lazy
-														// objects
+		mapper.registerModule(new Hibernate4Module()); // Support for lazy objects
 		messageConverter.setObjectMapper(mapper);
 		return messageConverter;
 	}
