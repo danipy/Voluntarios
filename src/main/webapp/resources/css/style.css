@@ -1,1 +1,6 @@
 font-family: 'Roboto', sans-serif;
+
+md-card md-card-content.event-thumbnail {
+	cursor: pointer;
+	cursor: hand;
+}

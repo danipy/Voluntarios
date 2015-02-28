@@ -16,6 +16,21 @@ app.config(['$mdThemingProvider', function($mdThemingProvider){
 	$mdThemingProvider.theme('cyanTheme')
 		.primaryPalette('cyan');
 	
+	$mdThemingProvider.theme('pinkTheme')
+		.primaryPalette('pink');
+	
+	$mdThemingProvider.theme('deepOrangeTheme')
+		.primaryPalette('deep-orange');
+	
+	$mdThemingProvider.theme('deepPurpleTheme')
+		.primaryPalette('deep-purple');
+	
+	$mdThemingProvider.theme('amberTheme')
+		.primaryPalette('amber');
+	
+	$mdThemingProvider.theme('greenTheme')
+		.primaryPalette('green');
+	
 	$mdThemingProvider.setDefaultTheme('appTheme');
 }]);
 
@@ -47,6 +62,15 @@ app.directive('volFooter', function() {
 	return {
 		restrict: 'E',
 		templateUrl: 'partials/footer.html'
+	};
+});
+
+//test only
+app.directive('volEventsGrid', function() {
+	return {
+		restrict: 'E',
+		templateUrl: 'partials/events-grid-list.html',
+		controller: 'EventsCtrl'
 	};
 });
 
