@@ -1,28 +1,32 @@
-<md-toolbar layout="row" layout-align="space-between start" md-scroll-shrink="">
-	<div layout="row" layout-align="start center">
-		<md-button ng-click="showSidenav()" aria-label="mostrar menu">
-			<i class="fa fa-bars"></i>
-			<md-tooltip>Menu</md-tooltip>
-		</md-button>
-		&nbsp;<i class="fa fa-child fa-border fa-lg"></i>&nbsp;
-		Voluntarios.mx
-	</div>
-	
-	<div layout="row" layout-align="end center">
-		<md-input-container ng-if="search">
-			<label>Buscar</label>
-			<input/>
-		</md-input-container>
-		<md-button ng-click="search = !search" aria-label="busqueda">
-			<i class="fa fa-search"></i>
-			<md-tooltip>Buscar</md-tooltip>
-		</md-button>
-		<md-button aria-label="notificationes">
-			<i class="fa fa-bell"></i>
-			<md-tooltip>Notificaciones</md-tooltip>
-		</md-button>
-		<md-button aria-label="acciones">
-			<i class="fa fa-ellipsis-v"></i>
-		</md-button>
+<md-toolbar md-scroll-shrink="">
+	<div layout="row" layout-align="space-between end">
+		<div>
+			<md-button ng-click="showSidenav()" aria-label="mostrar menu">
+				<i class="fa fa-bars"></i>
+				<md-tooltip>Menu</md-tooltip>
+			</md-button> &nbsp;
+			<a href="/Voluntarios" ng-href="/Voluntarios" style="text-decoration: none; color: inherit">
+				<i class="fa fa-child fa-border fa-lg"></i>&nbsp;
+				Voluntarios.mx
+			</a>
+		</div>
+		
+		<div>
+			<md-input-container ng-if="search">
+				<label>Buscar</label>
+				<input/>
+			</md-input-container>
+			<md-button ng-click="search = !search" aria-label="busqueda">
+				<i class="fa fa-search"></i>
+				<md-tooltip>Buscar</md-tooltip>
+			</md-button>
+			<md-button aria-label="notificationes">
+				<i class="fa fa-bell"></i>
+				<md-tooltip>Notificaciones</md-tooltip>
+			</md-button>
+			<md-button aria-label="acciones">
+				<i class="fa fa-ellipsis-v"></i>
+			</md-button>
+		</div>
 	</div>
 </md-toolbar>
