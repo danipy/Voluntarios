@@ -53,6 +53,7 @@ dependencies {
     compile group: 'org.springframework', name:'spring-orm', version: project.ext['spring.version']
     compile group: 'org.springframework.data', name: 'spring-data-jpa', version: '1.7.1.RELEASE'
     //compile 'org.springframework.data:spring-data-rest-webmvc:2.2.1.RELEASE'
+    compile group: 'org.springframework.hateoas', name: 'spring-hateoas', version: '0.16.0.RELEASE'
     
     //Hibernate
     compile (group: 'org.hibernate', name: 'hibernate-core', version: project.ext['hibernate.version']) {
