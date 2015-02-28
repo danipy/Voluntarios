@@ -10,11 +10,11 @@ import org.springframework.context.annotation.PropertySource;
 import org.springframework.core.env.Environment;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
-import org.springframework.orm.jpa.JpaTransactionManager;
+import org.springframework.orm.hibernate4.HibernateTransactionManager;
 import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
 import org.springframework.orm.jpa.vendor.Database;
+import org.springframework.orm.jpa.vendor.HibernateJpaSessionFactoryBean;
 import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
-import org.springframework.transaction.PlatformTransactionManager;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 @Configuration
@@ -52,22 +52,17 @@ public class PersistenceConfig {
 		return factory.getObject();
 	}
 
-	// @Bean
-	// public HibernateJpaSessionFactoryBean sessionFactory() {
-	// HibernateJpaSessionFactoryBean sessionFactory = new
-	// HibernateJpaSessionFactoryBean();
-	// sessionFactory.setEntityManagerFactory(entityManagerFactory());
-	// return sessionFactory;
-	// }
+	@Bean
+	public HibernateJpaSessionFactoryBean sessionFactory() {
+		HibernateJpaSessionFactoryBean sessionFactory = new HibernateJpaSessionFactoryBean();
+		sessionFactory.setEntityManagerFactory(entityManagerFactory());
+		return sessionFactory;
+	}
 
 	@Bean
-	public PlatformTransactionManager transactionManager() {
-		// HibernateTransactionManager txManager = new
-		// HibernateTransactionManager();
-		// txManager.setSessionFactory(sessionFactory());
-
-		JpaTransactionManager txManager = new JpaTransactionManager();
-		txManager.setEntityManagerFactory(entityManagerFactory());
+	public HibernateTransactionManager transactionManager() {
+		HibernateTransactionManager txManager = new HibernateTransactionManager();
+		txManager.setSessionFactory(sessionFactory().getObject());
 		return txManager;
 	}
 }
