@@ -40,6 +40,40 @@ public class EventRepositoryTest {
 	OngRepository ongRepository;
 
 	@Test
+	@Transactional(readOnly = true)
+	public void findAllPageRequestTest() {
+		Page<Event> events = eventRepository.findAll(new PageRequest(0, 10));
+
+		System.out.println("---------------- Eventos -----------------");
+		for (Event event : events) {
+			System.out.println(event.getId() + " " + event.getName() + " - "
+					+ event.getOng().getName());
+		}
+	}
+
+	@Test
+	@Transactional(readOnly = true)
+	public void findAllTest() {
+		List<Event> events = eventRepository.findAll();
+
+		System.out.println("---------------- Eventos -----------------");
+		for (Event event : events) {
+			System.out.println(event.getName() + " - " + event.getId());
+		}
+	}
+
+	@Test
+	@Transactional(readOnly = true)
+	public void findByOngIdTest() {
+		List<Event> ongEvents = eventRepository.findByOngId(2L);
+
+		System.out.println("---------------- OngEvents -----------------");
+		for (Event event : ongEvents) {
+			System.out.println(event.getId() + " - " + event.getName());
+		}
+	}
+
+	@Test
 	@Modifying
 	@Transactional
 	public void saveEventsTest() {
@@ -190,18 +224,6 @@ public class EventRepositoryTest {
 		}
 
 		assertTrue("Deben de ser 10", eventos.getSize() == 10);
-	}
-	
-	@Test
-	@Transactional(readOnly = true)
-	public void findAllTest() {
-		Page<Event> events = eventRepository.findAll(new PageRequest(0, 10));
-
-		System.out.println("---------------- Eventos -----------------");
-		for (Event event : events) {
-			System.out.println(event.getId() + " " + event.getName() + " - "
-					+ event.getOng().getName());
-		}
 	}
 
 }

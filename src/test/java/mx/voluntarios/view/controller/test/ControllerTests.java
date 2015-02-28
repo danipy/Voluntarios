@@ -19,13 +19,16 @@ import org.springframework.web.context.WebApplicationContext;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @WebAppConfiguration
-@ContextConfiguration(classes = { ApplicationContext.class })
+@ContextConfiguration(classes = ApplicationContext.class)
 public class ControllerTests {
 
 	@Autowired
 	private WebApplicationContext wac;
 
 	private MockMvc mockMvc;
+
+	private MediaType contentType = new MediaType(
+			MediaType.APPLICATION_JSON.getType());
 
 	@Before
 	public void setup() {
@@ -36,21 +39,33 @@ public class ControllerTests {
 	public void getEventsTest() throws Exception {
 		this.mockMvc
 				.perform(
-						get("/events/content/events").param("page", "1").param(
-								"size", "10"))
+						get("/events/content/events").param("page", "1")
+						.param("size", "10"))
 				.andExpect(status().isOk())
-				.andExpect(
-						content().contentType(MediaType.APPLICATION_JSON_VALUE));
+				.andExpect(content().contentType(contentType));
 	}
 	
 	@Test
 	public void getEventTest() throws Exception {
 		this.mockMvc
 				.perform(
-						get("/events/" + 1L))
-				.andExpect(status().isOk())
-				.andExpect(
-						content().contentType(MediaType.APPLICATION_JSON_VALUE));
+						get("/events/1"))
+						.andExpect(status().isOk());
 	}
 
+	@Test
+	public void getOngTest() throws Exception {
+		this.mockMvc
+				.perform(get("/resources/ongs/1"))
+				.andExpect(status().isOk())
+				.andExpect(content().contentType(contentType));
+	}
+
+	@Test
+	public void getRestOngs() throws Exception {
+		this.mockMvc
+				.perform(get("/resources/ongs"))
+				.andExpect(status().isOk())
+				.andExpect(content().contentType(contentType));
+	}
 }
