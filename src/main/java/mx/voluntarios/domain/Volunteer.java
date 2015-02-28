@@ -39,7 +39,7 @@ public class Volunteer {
 
 	@Column(name = "BIRTHDAY")
 	@Temporal(TemporalType.DATE)
-	private Date birthDay;
+	private Date birthday;
 
 	@Column(name = "EXP")
 	private int exp;
@@ -53,7 +53,7 @@ public class Volunteer {
 	@ManyToMany(mappedBy = "volunteers")
 	private Set<Ong> ongs = new HashSet<Ong>(0);
 
-	@ManyToMany(fetch = FetchType.EAGER)
+	@ManyToMany(fetch = FetchType.LAZY)
 	@JoinTable(name = "EVNT_VOL", joinColumns = { @JoinColumn(name = "VOL_ID") },
 				inverseJoinColumns = { @JoinColumn(name = "EVNT_ID") })
 	private Set<Event> events = new HashSet<Event>(0);
@@ -106,12 +106,12 @@ public class Volunteer {
 		this.city = city;
 	}
 
-	public Date getBirthDay() {
-		return birthDay;
+	public Date getBirthday() {
+		return birthday;
 	}
 
-	public void setBirthDay(Date birthDay) {
-		this.birthDay = birthDay;
+	public void setBirthday(Date birthday) {
+		this.birthday = birthday;
 	}
 
 	public int getExp() {
@@ -156,9 +156,9 @@ public class Volunteer {
 
 	@Override
 	public String toString() {
-		return "Volunteer [id=" + id + ", name=" + name + ", lastName="
-				+ lastName + ", username=" + username + ", email=" + email
-				+ ", city=" + city + ", birthDay=" + birthDay + ", exp=" + exp
-				+ ", lvl=" + lvl + ", dateCreated=" + dateCreated + "]";
+		return "Volunteer [name=" + name + ", lastName=" + lastName
+				+ ", username=" + username + ", email=" + email + ", city="
+				+ city + ", birthday=" + birthday + ", exp=" + exp + ", lvl="
+				+ lvl + ", dateCreated=" + dateCreated + "]";
 	}
 }

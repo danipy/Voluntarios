@@ -112,10 +112,10 @@ public class Ong {
 		this.events = events;
 	}
 
-	@Override
-	public String toString() {
-		return "Ong [id=" + id + ", name=" + name + ", description="
-				+ description + ", address=" + address + ", cv=" + cv
-				+ ", dateOfReg=" + dateCreated + "]";
-	}
+	// @Override
+	// public String toString() {
+	// return "Ong [id=" + id + ", name=" + name + ", description="
+	// + description + ", address=" + address + ", cv=" + cv
+	// + ", dateOfReg=" + dateCreated + "]";
+	// }
 }
