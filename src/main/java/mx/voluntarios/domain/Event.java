@@ -33,7 +33,7 @@ public class Event {
 	@Column(name = "EVNT_TIME")
 	private String time;
 
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "ONG_ID")
 	private Ong ong;
 
@@ -132,11 +132,11 @@ public class Event {
 		this.volunteers = volunteers;
 	}
 
-	@Override
-	public String toString() {
-		return "Event [id=" + id + ", name=" + name + ", date=" + date
-				+ ", time=" + time + ", description=" + description
-				+ ", address=" + address + ", lat=" + lat + ", lng=" + lng
-				+ "]";
-	}
+	// @Override
+	// public String toString() {
+	// return "Event [id=" + id + ", name=" + name + ", date=" + date
+	// + ", time=" + time + ", description=" + description
+	// + ", address=" + address + ", lat=" + lat + ", lng=" + lng
+	// + "]";
+	// }
 }
