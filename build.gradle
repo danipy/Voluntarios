@@ -54,6 +54,8 @@ dependencies {
     compile group: 'org.springframework.data', name: 'spring-data-jpa', version: '1.7.1.RELEASE'
     //compile 'org.springframework.data:spring-data-rest-webmvc:2.2.1.RELEASE'
     compile group: 'org.springframework.hateoas', name: 'spring-hateoas', version: '0.16.0.RELEASE'
+    compile group: 'org.springframework.security', name: 'spring-security-web', version: '4.0.0.RC2'
+    compile group: 'org.springframework.security', name: 'spring-security-config', version: '4.0.0.RC2'
     
     //Hibernate
     compile (group: 'org.hibernate', name: 'hibernate-core', version: project.ext['hibernate.version']) {
@@ -74,6 +76,10 @@ dependencies {
     compile group: 'com.fasterxml.jackson.core', name: 'jackson-databind', version: '2.5.0'
     compile group: 'com.fasterxml.jackson.datatype', name: 'jackson-datatype-hibernate4', version: '2.5.0'
     
+    //JSONPath
+    //compile group: 'com.jayway.jsonpath', name: 'json-path', version: '1.2.0'
+    //compile (group: 'com.jayway.jsonpath', name: 'json-path-assert', version: '1.2.0')
+    
     
     //Tests
     compile group: 'junit', name: 'junit', version: '4.12'
@@ -83,7 +89,7 @@ dependencies {
 
 // tag::wrapper[]
 task wrapper(type: Wrapper) {
-    gradleVersion = '1.11'
+    gradleVersion = '2.1'
 }
 // end::wrapper[]
 

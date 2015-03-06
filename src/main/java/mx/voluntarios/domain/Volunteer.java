@@ -15,6 +15,8 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+import org.springframework.data.annotation.CreatedDate;
+
 @Entity
 @Table(name = "VOL")
 public class Volunteer {
@@ -48,6 +50,7 @@ public class Volunteer {
 	private int lvl;
 
 	@Column(name = "DATE_CREATED")
+	@CreatedDate
 	private Date dateCreated;
 
 	@ManyToMany(mappedBy = "volunteers")
