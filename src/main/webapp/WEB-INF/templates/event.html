@@ -9,10 +9,11 @@
 	<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet" />
 	<link href="http://fonts.googleapis.com/css?family=Roboto:400,300,500,900" rel="stylesheet" type="text/css" />
 	<link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/angular_material/0.8.2/angular-material.min.css" />
+	<link href="../resources/css/animate.css" rel="stylesheet" type="text/css" />
 	<link href="../resources/css/style.css" rel="stylesheet" type="text/css" />
 	<style type="text/css">[ng\:cloak], [ng-cloak], .ng-cloak {display: none !important;}</style>
 </head>
-	<body ng-controller="OngCtrl" ng-cloak="">
+	<body ng-controller="EventCtrl" ng-cloak="">
 		<vol-sidenav></vol-sidenav> <!-- sidenav derecha -->
 		
 		<vol-header></vol-header> <!-- encabezado -->
@@ -20,17 +21,18 @@
 		<md-tabs md-selected="selectedIndex" flex="">
 		
 			<md-tab>
-				<md-tab-label>ONG</md-tab-label>
+				<md-tab-label>EVENTO</md-tab-label>
 				<section layout="row" layout-align="space-around">
 					<div layout="row" layout-align="space-around">
 						<md-content>
-							<md-card>
+							<md-card layout-align="center center" layout-padding="">
 								<img src="http://lorempixel.com/1013/300" height="300" />
 								
-								<div layout-padding="">
-									<h1>{{ongResource.ong.name}}</h1>
+								<h1>{{eventResource.event.name}}</h1>
+								
+								<div>
 									
-									<p>{{ongResource.ong.description}}</p>
+									<p>{{eventResource.event.description}}</p>
 									
 									<p>
 										Ojos que Sienten A.C es una Asociación que tiene por objetivo cambiar las percepciones sobre las personas con 
@@ -58,56 +60,55 @@
 										distintos grupos de personas.
 									</p>
 								</div>
-								<md-button class="md-raised md-accent" ng-click="showConfirm($event)"
-									id="btnApply">
-									Enviar solicitud
-								</md-button>
 							</md-card>
 						</md-content>
 					</div>
 					<div layout-margin="" md-theme="blueGreyTheme">
-						<md-sidenav class="md-sidenav-left md-whiteframe-z2" md-is-locked-open="$media('gt-md')"
-									md-component-id="eventsGoingNav">
+						<md-sidenav class="md-sidenav-left md-whiteframe-z2"
+							md-is-locked-open="$media('gt-md')"
+							md-component-id="eventsGoingNav">
 							<md-toolbar class="md-accent">
 								<h1 class="md-toolbar-tools"> Informaci&oacute;n adicional </h1>
 							</md-toolbar>
 							
 							<md-content layout-padding="">
 								<div>
-									Ubicaci&oacute;n: {{ongResource.ong.address}}
+									Ubicaci&oacute;n: {{eventResource.event.address}}
 									<br/>
-									Requiere cv: {{ongResource.ong.cv === 1? 'si': 'no'}}
+									Requiere cv: {{eventResource.event.cv === 1? 'si': 'no'}}
 									<br/>
-									Voluntarios inscritos: {{ongVolunteers.length}}
+									Voluntarios inscritos: {{eventVolunteers.length}}
 								</div>
-								<h1>&Uacute;ltimos eventos</h1>
 								<md-card>
-									<div ng-if="ongEvents.length === 0" layout-padding="">
-										No hay eventos disponibles
-									</div>
+									<h2>Organiz&oacute;:</h2>
+										{{eventResource.event.ong.name}}
+										<br/>
+										{{eventResource.event.ong.address}}
 								</md-card>
-								<vol-events-mini events="ongEvents"></vol-events-mini>
 							</md-content>
 							
 						</md-sidenav>
 					</div>
 				</section>
 			</md-tab>
-		
-			<md-tab>
-				<md-tab-label>Eventos realizados</md-tab-label>
-				<div layout="row" layout-align="space-around center">
-					<vol-events events="ongEvents"></vol-events>
-				</div>
-			</md-tab>
 			
 			<md-tab>
-				<md-tab-label> VOLUNTARIOS APOYANDO ESTA CAUSA </md-tab-label>
-				<h2 layout-padding=""> La diferencia la hacen ellos: </h2>
+				<md-tab-label>ONG</md-tab-label>
+				<md-card>
+					<p>
+						{{eventResource.event.ong.name}}}
+						<br/>
+						{{eventResource.event.ong.address}}
+					</p>
+				</md-card>
+			</md-tab>
+			<md-tab>
+				<md-tab-label>APOYARON ESTA CAUSA</md-tab-label>
+				<h2 layout-padding=""> La diferencia la hicieron ellos: </h2>
 				<md-content>
 					<md-card>
 						<md-list>
-				      		<md-item ng-repeat="volunteerResource in ongVolunteers track by $index">
+				      		<md-item ng-repeat="volunteerResource in eventVolunteers track by $index">
 				        		<md-item-content>
 				          			<div class="md-tile-left">
 				              			<a ng-href="{{ (volunteerResource.links | filter:'self':true)[0].href }}">
@@ -154,6 +155,7 @@
 		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.6/angular-animate.min.js"></script>
     	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.6/angular-aria.min.js"></script>
 
+	    <!-- Angular Material via Google CDN; version 0.7 used here -->
 	    <script src="https://ajax.googleapis.com/ajax/libs/angular_material/0.8.2/angular-material.min.js"></script>
 		
 <!-- 		<script src="resources/bower_components/ngInfiniteScroll/build/ng-infinite-scroll.min.js"></script> -->

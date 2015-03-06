@@ -1,31 +1,31 @@
 <md-toolbar md-scroll-shrink="">
-	<div layout="row" layout-align="space-between end">
+	<div layout="row" layout-align="space-between end" class="md-toolbar-tools">
 		<div>
 			<md-button ng-click="showSidenav()" aria-label="mostrar menu">
-				<i class="fa fa-bars"></i>
+				<i class="fa fa-bars fa-lg"></i>
 				<md-tooltip>Menu</md-tooltip>
 			</md-button> &nbsp;
-			<a href="/Voluntarios" ng-href="/Voluntarios" style="text-decoration: none; color: inherit">
+			<a href="/Voluntarios" ng-href="/Voluntarios" >
 				<i class="fa fa-child fa-border fa-lg"></i>&nbsp;
 				Voluntarios.mx
 			</a>
 		</div>
 		
-		<div>
+		<div layout="row">
 			<md-input-container ng-if="search">
 				<label>Buscar</label>
 				<input/>
 			</md-input-container>
 			<md-button ng-click="search = !search" aria-label="busqueda">
-				<i class="fa fa-search"></i>
+				<i class="fa fa-search fa-lg"></i>
 				<md-tooltip>Buscar</md-tooltip>
 			</md-button>
 			<md-button aria-label="notificationes">
-				<i class="fa fa-bell"></i>
+				<i class="fa fa-bell fa-lg"></i>
 				<md-tooltip>Notificaciones</md-tooltip>
 			</md-button>
 			<md-button aria-label="acciones">
-				<i class="fa fa-ellipsis-v"></i>
+				<i class="fa fa-ellipsis-v fa-lg"></i>
 			</md-button>
 		</div>
 	</div>

@@ -1,6 +1,19 @@
-font-family: 'Roboto', sans-serif;
 
-md-card md-card-content.event-thumbnail {
-	cursor: pointer;
-	cursor: hand;
+.resrc-link {
+	text-decoration: none;
+	color: inherit;
+}
+
+.ng-enter {
+	-webkit-animation: fadeInUp 1s;
+	-moz-animation: fadeInUp1s;
+	-o-animation: fadeInUp 1s;
+	animation: fadeInUp 1s;
+}
+
+.ng-leave {
+	-webkit-animation: fadeOutDown 1s;
+	-moz-animation: fadeOutDown 1s;
+	-o-animation: fadeOutDown 1s;
+	animation: fadeOutDown 1s;
 }

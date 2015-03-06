@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html ng-app="volApp">
+<head>
+	<meta charset="utf-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+	<title>Voluntarios.mx</title>
+	
+	<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet" />
+	<link href="http://fonts.googleapis.com/css?family=Roboto:400,300,500,900" rel="stylesheet" type="text/css" />
+	<link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/angular_material/0.8.2/angular-material.min.css" />
+	<link href="resources/css/style.css" rel="stylesheet" type="text/css" />
+	<style type="text/css">[ng\:cloak], [ng-cloak], .ng-cloak {display: none !important;}</style>
+</head>
+	<body layout="column" ng-controller="LoginCtrl">
+		<vol-sidenav></vol-sidenav> <!-- sidenav derecha -->
+		
+		<vol-header></vol-header> <!-- encabezado -->
+		<span ng-if="authenticated">Logged in</span>
+		<md-tabs md-selected="selectedIndex" flex="">
+		
+			<md-tab>
+				<md-tab-label>VOLUNTARIO(A)</md-tab-label>
+			</md-tab>
+		
+			<md-tab>
+				<md-tab-label>ONG</md-tab-label>
+				<md-content layout="row" 
+					layout-sm="column" layout-align="space-around center">
+					<div layout="row" layout-sm="column">
+						<form role="form" ng-submit="login()">
+							<md-input-container flex="">
+								<label>Usuario</label>
+								<input name="username" ng-model="credentials.username" placeholder="" />
+	        				</md-input-container>
+					        <md-input-container flex="">
+					        	<label>Contrase&ntilde;a</label>
+					        	<input name="password" ng-model="credentials.password" type="password" />
+					        </md-input-container>
+					        <button id="submit" type="submit" class="md-raised md-primary" md-button="">Aceptar</button>
+						</form>
+				    </div>
+				</md-content>
+			</md-tab>
+		
+		</md-tabs>
+		
+		<vol-footer></vol-footer>
+		
+		<script src="https://code.angularjs.org/1.3.6/angular.min.js"></script>
+		<script src="https://code.angularjs.org/1.3.6/angular-route.min.js"></script>
+		<script src="https://code.angularjs.org/1.3.6/angular-resource.js"></script>
+		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.6/angular-animate.min.js"></script>
+    	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.6/angular-aria.min.js"></script>
+
+	    <!-- Angular Material via Google CDN; version 0.7 used here -->
+	    <script src="https://ajax.googleapis.com/ajax/libs/angular_material/0.8.2/angular-material.min.js"></script>
+		<script src="resources/js/app.js"></script>
+		<script src="resources/js/appControllers.js"></script>
+	</body>
+</html>

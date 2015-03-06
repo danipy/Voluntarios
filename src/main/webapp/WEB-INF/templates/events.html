@@ -9,65 +9,57 @@
 	<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet" />
 	<link href="http://fonts.googleapis.com/css?family=Roboto:400,300,500,900" rel="stylesheet" type="text/css" />
 	<link href="https://ajax.googleapis.com/ajax/libs/angular_material/0.8.2/angular-material.min.css" rel="stylesheet" type="text/css" />
+	<link href="resources/css/animate.css" rel="stylesheet" type="text/css" />
 	<link href="resources/css/style.css" rel="stylesheet" type="text/css" />
+	<style type="text/css">[ng\:cloak], [ng-cloak], .ng-cloak {display: none !important;}</style>
 	
 </head>
-	<body>
+	<body ng-controller="EventCtrl" ng-cloak="">
 		<vol-sidenav></vol-sidenav> <!-- sidenav derecha -->
 		
 		<vol-header></vol-header>
 		
-		<section layout="row" layout-align="space-around">
-			<div layout="column">
-				<vol-events></vol-events>
-			</div>
-			<div layout-margin="" md-theme="blueGreyTheme">
-				<md-sidenav class="md-sidenav-left md-whiteframe-z2" 
-					md-is-locked-open="$media('gt-md')"
-					md-component-id="eventsGoingNav">
-					<md-toolbar class="md-pimary">
-						<h1 class="md-toolbar-tools"> Eventos a los que ir&aacute;s </h1>
-					</md-toolbar>
-					<md-content layout-padding="">	
-						<md-card layout="column" 
-							ng-repeat="eventResource in events track by $index">
-							<md-card-content>
-								<h3 ng-click="viewEvent(eventResource.links)"
-									style="cursor: pointer">
-									{{eventResource.event.name}}
-									<md-tooltip>Mostrar detalles</md-tooltip>
-								</h3>
-								<div>{{eventResource.event.description}}</div>
-								<br/>
-								<div>
-									<br/>
-									{{eventResource.event.address}}
-									<br/>
-									{{eventResource.event.date}}
-									<br/>
-									{{eventResource.event.time}}
-									<br/>
-								</div>
-								<div layout="row" layout-align="end end">
-									<md-button class="md-raised md-primary" ng-show="!ir" ng-click="ir = !ir" aria-label="ir a evento">
-										Asistir
-									</md-button>
-									<md-button class="md-raised md-warn" ng-show="ir" ng-click="ir = !ir" aria-label="ir a evento">
-										Ya no quiero ir 
-									</md-button>
-								</div>
-							</md-card-content>
-						</md-card>
-					</md-content>
-				</md-sidenav>
-			</div>
-		</section>
+		<md-tabs md-selected="selectedIndex" flex="">
 		
-<!-- 		<section> -->
-<!-- 			<vol-events-grid></vol-events-grid> -->
-<!-- 		</section> -->
+			<md-tab id="tab1" aria-controlls="tab1-content">
+				<md-tab-label> Eventos disponibles </md-tab-label>
+				<section layout="row" layout-align="space-around">
+					<div layout="column">
+ 						<vol-events events="events"></vol-events> <!-- Lista de eventos -->
+					</div>
+					<div layout-margin="" md-theme="blueGreyTheme">
+						<md-sidenav class="md-sidenav-left md-whiteframe-z2" 
+							md-is-locked-open="$media('gt-md')"
+							md-component-id="eventsGoingNav">
+							<md-toolbar class="md-pimary">
+								<h1 class="md-toolbar-tools"> Eventos a los que ir&aacute;s </h1>
+							</md-toolbar>
+							<md-content layout-padding="">
+								<vol-events-mini events="events"></vol-events-mini>
+							</md-content>
+						</md-sidenav>
+					</div>
+				</section>
+			</md-tab>
+			
+			<md-tab>
+				<md-tab-label> Eventos pasados </md-tab-label>
+				Ola ke ase
+			</md-tab>
+			
+			<md-tab ng-if="isAuth">
+				<md-tab-label> Eventos a los que has ido </md-tab-label>
+				Ola ke ase
+			</md-tab>
+			
+			<md-tab ng-if="isAuth">
+			<md-tab-label> Ongs que apoyas </md-tab-label>
+				Ola ke ase
+			</md-tab>
+			
+		</md-tabs>
 		
-		<div ng-if="!isLoadingEvents" layout="row" layout-align="space-around">
+		<div ng-if="!isLoadingEvents &amp;&amp; selectedIndex === 0" layout="row" layout-align="space-around">
 			<a ng-click="loadMore()" href="javascript:void(0)">Cargar m&aacute;s...</a>
 		</div>
 		
@@ -84,16 +76,8 @@
 		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.6/angular-animate.min.js"></script>
     	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.6/angular-aria.min.js"></script>
 
-	    <!-- Angular Material via Google CDN; version 0.7 used here -->
 	    <script src="https://ajax.googleapis.com/ajax/libs/angular_material/0.8.2/angular-material.min.js"></script>
 		
-		<!-- Angular Material from bower -->
-<!-- 		<script src="resources/bower_components/hammerjs/hammer.js"></script> -->
-<!-- 		<script src="resources/bower_components/angular-aria/angular-aria.js"></script> -->
-<!-- 		<script src="resources/bower_components/angular-animate/angular-animate.min.js"></script> -->
-<!-- 		<script src="resources/bower_components/angular-material/angular-material.min.js"></script> -->
-		
-<!-- 		<script src="resources/bower_components/ngInfiniteScroll/build/ng-infinite-scroll.min.js"></script> -->
 		<script src="resources/js/app.js"></script>
 		<script src="resources/js/appControllers.js"></script>
 	</body>
