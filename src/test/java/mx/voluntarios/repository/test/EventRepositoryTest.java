@@ -74,21 +74,6 @@ public class EventRepositoryTest {
 	}
 
 	@Test
-	@Transactional(readOnly = true)
-	public void findByDateAfter() {
-		String fecha = "2013-06-30T01:20"; // Iso datetime format
-		Page<Event> ongEvents = eventRepository.findByDateAfter(DateTime
-				.parse(fecha)
-				.toDate(), new PageRequest(0, 10));
-
-		System.out.println("---------------- OngEvents -----------------");
-		for (Event event : ongEvents) {
-			System.out.println(event.getId() + " - " + event.getName() + " - "
-					+ event.getDate());
-		}
-	}
-
-	@Test
 	@Modifying
 	@Transactional
 	public void saveEventsTest() {

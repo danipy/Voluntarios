@@ -28,7 +28,6 @@ public class ApplicationInitializer implements WebApplicationInitializer{
 		ServletRegistration.Dynamic dispatcher = 
 				servletContext.addServlet("dispatcher", new DispatcherServlet(rootContext));
 		dispatcher.setLoadOnStartup(1);
-		dispatcher.setRunAsRole("voluntarios.mx");
 		dispatcher.addMapping("/*");
 	}
 

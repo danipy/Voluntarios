@@ -11,9 +11,6 @@ import mx.voluntarios.web.resources.OngResource;
 import mx.voluntarios.web.resources.VolunteerResource;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Pageable;
-import org.springframework.hateoas.PagedResources;
-import org.springframework.hateoas.PagedResources.PageMetadata;
 import org.springframework.hateoas.Resources;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -38,18 +35,12 @@ public class VolunteerRestController {
 	EventRepository eventRepository;
 
 	@RequestMapping(method = RequestMethod.GET)
-	public PagedResources<VolunteerResource> getVolunteers(Pageable pageable) {
-		List<VolunteerResource> volunteerResourceList = volunteerRepository
-				.findAll(pageable)
-				.getContent()
+	public Resources<VolunteerResource> getVolunteers() {
+		List<VolunteerResource> volunteerResourceList = volunteerRepository.findAll()
 				.stream()
 				.map(VolunteerResource::new)
 				.collect(Collectors.toList());
-
-		PageMetadata pageMetadata = new PageMetadata(pageable.getPageSize(),
-				pageable.getPageNumber(), volunteerRepository.count());
-
-		return new PagedResources<VolunteerResource>(volunteerResourceList, pageMetadata);
+		return new Resources<VolunteerResource>(volunteerResourceList);
 	}
 
 	@RequestMapping(value = "/{id}", method = RequestMethod.GET)

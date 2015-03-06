@@ -2,48 +2,34 @@ var app = angular.module('volApp', ['appControllers']);
 
 app.config(['$mdThemingProvider', function($mdThemingProvider){
 	$mdThemingProvider.theme('appTheme')
-		.primaryPalette('blue')
-		.accentPalette('pink');
+		.primaryPalette('blue');
 	
 	$mdThemingProvider.theme('blueGreyTheme')
-		.primaryPalette('blue-grey')
-		.accentPalette('blue');
+		.primaryPalette('blue-grey');
 	
 	$mdThemingProvider.theme('tealTheme')
-		.primaryPalette('teal')
-		.accentPalette('indigo');
+		.primaryPalette('teal');
 	
 	$mdThemingProvider.theme('indigoTheme')
-		.primaryPalette('indigo')
-		.accentPalette('pink');
+		.primaryPalette('indigo');
 	
 	$mdThemingProvider.theme('cyanTheme')
-		.primaryPalette('cyan')
-		.accentPalette('amber');
+		.primaryPalette('cyan');
 	
 	$mdThemingProvider.theme('pinkTheme')
-		.primaryPalette('pink')
-		.accentPalette('purple');
-	
-	$mdThemingProvider.theme('purpleTheme')
-		.primaryPalette('purple')
-		.accentPalette('deep-orange');
+		.primaryPalette('pink');
 	
 	$mdThemingProvider.theme('deepOrangeTheme')
-		.primaryPalette('deep-orange')
-		.accentPalette('orange');
+		.primaryPalette('deep-orange');
 	
 	$mdThemingProvider.theme('deepPurpleTheme')
-		.primaryPalette('deep-purple')
-		.accentPalette('orange');
+		.primaryPalette('deep-purple');
 	
 	$mdThemingProvider.theme('amberTheme')
-		.primaryPalette('amber')
-		.accentPalette('teal');
+		.primaryPalette('amber');
 	
 	$mdThemingProvider.theme('greenTheme')
-		.primaryPalette('green')
-		.accentPalette('amber');
+		.primaryPalette('green');
 	
 	$mdThemingProvider.setDefaultTheme('appTheme');
 }]);
@@ -51,7 +37,7 @@ app.config(['$mdThemingProvider', function($mdThemingProvider){
 app.directive('volSidenav', function() {
 	return {
 		restrict: 'E',
-		templateUrl: '/Voluntarios/partials/sidenav.html',
+		templateUrl: 'partials/sidenav.html',
 		controller: 'SidenavCtrl'
 	};
 });
@@ -59,7 +45,7 @@ app.directive('volSidenav', function() {
 app.directive('volHeader', function() {
 	return {
 		restrict: 'E',
-		templateUrl: '/Voluntarios/partials/events-header.html',
+		templateUrl: 'partials/events-header.html',
 		controller: 'EventsHeaderCtrl'
 	};
 });
@@ -67,23 +53,15 @@ app.directive('volHeader', function() {
 app.directive('volEvents', function() {
 	return {
 		restrict: 'E',
-		scope: { events: '=events' },
-		templateUrl: '/Voluntarios/partials/events-list.html'
-	};
-});
-
-app.directive('volEventsMini', function() {
-	return {
-		restrict: 'E',
-		scope: { events: '=events' },
-		templateUrl: '/Voluntarios/partials/events-list-mini.html'
+		templateUrl: 'partials/events-list.html',
+		controller: 'EventsCtrl'
 	};
 });
 
 app.directive('volFooter', function() {
 	return {
 		restrict: 'E',
-		templateUrl: '/Voluntarios/partials/footer.html'
+		templateUrl: 'partials/footer.html'
 	};
 });
 
@@ -91,8 +69,8 @@ app.directive('volFooter', function() {
 app.directive('volEventsGrid', function() {
 	return {
 		restrict: 'E',
-		templateUrl: '/Voluntarios/partials/events-grid-list.html',
-		controller: 'EventCtrl'
+		templateUrl: 'partials/events-grid-list.html',
+		controller: 'EventsCtrl'
 	};
 });
 

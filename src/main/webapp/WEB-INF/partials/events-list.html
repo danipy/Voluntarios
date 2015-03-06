@@ -2,14 +2,20 @@
 	<md-card layout="column" md-theme="{{dynamicTheme}}" md-theme-watch
 				ng-repeat="eventResource in events track by $index">
 		<md-toolbar layout-fill="">
-			<div layout="row" layout-align="start center" layout-padding="" class="md-toolbar-tools">
-				<a ng-href="{{ (eventResource.links | filter:{rel:'self'})[0].href }}">
-					{{eventResource.event.name}}
-				</a>
+			<div layout="row" layout-align="start center" layout-padding="">
+				<h3>
+					<a ng-href="{{ (eventResource.links | filter:{rel:'self'})[0].href }}"
+						style="text-decoration: none; color: inherit">
+						{{eventResource.event.name}}
+					</a>
+				</h3>
 				&nbsp; &mdash; &nbsp;
-				<a ng-href="{{ (eventResource.links | filter:{rel:'ong'})[0].href }}">
-					{{eventResource.event.ong.name}}
-				</a>
+				<small>
+					<a ng-href="{{ (eventResource.links | filter:{rel:'ong'})[0].href }}"
+						style="text-decoration: none; color: inherit">
+						{{eventResource.event.ong.name}}
+					</a>
+				</small>
 <!-- 				<md-button aria-label="mostrar acciones"> -->
 <!-- 					<i class="fa fa-ellipsis-v fa-lg"></i> -->
 <!-- 				</md-button> -->
@@ -35,7 +41,6 @@
 				<h3>Donde</h3>
 				<md-button class="md-fab md-warn" ng-click="event.isLocationShown = !event.isLocationShown" aria-label="mostrar mapa">
 					<i class="fa fa-map-marker fa-lg"></i>
-					<md-tooltip>Mapa</md-tooltip>
 				</md-button>
 			</div>
 			{{eventResource.event.address}}
@@ -48,7 +53,7 @@
 			<a href="javascript:void(0)">{{eventResource.event.voluntarios.length}} voluntarios asistir&aacute;n</a>
 			
 			<div layout="row" layout-align="end end"> 
-				<md-button class="md-raised md-accent" ng-show="!ir" ng-click="ir = !ir" aria-label="ir a evento">
+				<md-button class="md-raised md-primary" ng-show="!ir" ng-click="ir = !ir" aria-label="ir a evento">
 					Asistir
 				</md-button>
 				<md-button class="md-raised md-warn" ng-show="ir" ng-click="ir = !ir" aria-label="ir a evento">

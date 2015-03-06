@@ -3,12 +3,14 @@ package mx.voluntarios.web.controllers.rest;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import mx.voluntarios.domain.Event;
 import mx.voluntarios.repository.EventRepository;
 import mx.voluntarios.repository.VolunteerRepository;
 import mx.voluntarios.web.resources.EventResource;
 import mx.voluntarios.web.resources.VolunteerResource;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.hateoas.PagedResources;
 import org.springframework.hateoas.PagedResources.PageMetadata;
