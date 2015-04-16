@@ -1,4 +1,4 @@
-package mx.voluntarios.web.filter;
+package mx.voluntarios.security.filter;
 
 import java.io.IOException;
 

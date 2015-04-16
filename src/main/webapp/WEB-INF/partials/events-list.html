@@ -1,13 +1,13 @@
 <md-content>
 	<md-card layout="column" md-theme="{{dynamicTheme}}" md-theme-watch
-				ng-repeat="eventResource in events track by $index">
+				ng-repeat="eventResource in events track by $index" data-sr>
 		<md-toolbar layout-fill="">
-			<div layout="row" layout-align="start center" layout-padding="" class="md-toolbar-tools">
-				<a ng-href="{{ (eventResource.links | filter:{rel:'self'})[0].href }}">
+			<div layout="row" layout-align="start center" class="md-toolbar-tools">
+				<a ng-href="#/events/{{eventResource.event.id}}">
 					{{eventResource.event.name}}
 				</a>
 				&nbsp; &mdash; &nbsp;
-				<a ng-href="{{ (eventResource.links | filter:{rel:'ong'})[0].href }}">
+				<a ng-href="#/ongs/{{eventResource.event.ong.id}}">
 					{{eventResource.event.ong.name}}
 				</a>
 <!-- 				<md-button aria-label="mostrar acciones"> -->
@@ -40,7 +40,7 @@
 			</div>
 			{{eventResource.event.address}}
 			
-			<div ng-show="event.isLocationShown" layout="row" layout-align="space-around center">
+			<div ng-if="event.isLocationShown" layout="row" layout-align="space-around center">
 				<img src="http://www.poderpda.com/wp-content/uploads/2012/03/Google-Maps-being-offline-doesnt-mean-being-lost.gif" />
 			</div>
 			
@@ -48,12 +48,16 @@
 			<a href="javascript:void(0)">{{eventResource.event.voluntarios.length}} voluntarios asistir&aacute;n</a>
 			
 			<div layout="row" layout-align="end end"> 
-				<md-button class="md-raised md-accent" ng-show="!ir" ng-click="ir = !ir" aria-label="ir a evento">
-					Asistir
-				</md-button>
-				<md-button class="md-raised md-warn" ng-show="ir" ng-click="ir = !ir" aria-label="ir a evento">
-					Ya no quiero ir 
-				</md-button>
+				<div ng-hide="ir">
+					<md-button class="md-raised md-accent" ng-click="ir = !ir" aria-label="ir a evento">
+						Asistir
+					</md-button>
+				</div>
+				<div ng-show="ir">
+					<md-button class="md-raised md-warn" ng-click="ir = !ir" aria-label="ir a evento">
+						Cancelar
+					</md-button>
+				</div>
 			</div>
 		</md-card-content>
 	</md-card>

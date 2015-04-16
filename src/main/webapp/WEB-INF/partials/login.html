@@ -1,0 +1,22 @@
+
+<div id="login" layout="column" layout-sm="column" layout-align="space-around center">
+	<h1>Iniciar sesi&oacute;n</h1>
+	<md-content>
+		<div layout="row" layout-sm="column">
+			<form role="form" name="loginForm" ng-submit="login()">
+				<md-input-container flex="">
+					<label><strong>Usuario</strong></label>
+					<input name="username" ng-model="credentials.username" required="" />
+      				</md-input-container>
+		        <md-input-container flex="">
+		        	<label><strong>Contrase&ntilde;a</strong></label>
+		        	<input name="password" ng-model="credentials.password" type="password" required=""/>
+		        </md-input-container>
+		        <button id="submit" type="submit" class="md-raised md-primary" md-button="">Aceptar</button>
+		        
+		        <div class="fb-login-button" data-max-rows="1" data-size="large" data-show-faces="true" data-auto-logout-link="true"></div>
+		        
+			</form>
+	    </div>
+	</md-content>
+</div>

@@ -1,19 +1,46 @@
 
-.resrc-link {
+.face-toolbar {
+	border-radius: 75px; 
+	border: 1px solid #ddd; 
+	width: 40px;
+}
+
+.face-profile {
+	border-radius: 150px; 
+	border: 1px solid #ddd; 
+	width: 200px; 
+	margin: 16px;
+}
+
+.nostyle-link {
 	text-decoration: none;
 	color: inherit;
 }
 
-.ng-enter {
-	-webkit-animation: fadeInUp 1s;
-	-moz-animation: fadeInUp1s;
-	-o-animation: fadeInUp 1s;
-	animation: fadeInUp 1s;
+md-card.ng-enter {
+	-webkit-animation: fadeIn 1s;
+	-moz-animation: fadeIn1s;
+	-o-animation: fadeIn 1s;
+	animation: fadeIn 1s;
 }
 
-.ng-leave {
-	-webkit-animation: fadeOutDown 1s;
-	-moz-animation: fadeOutDown 1s;
-	-o-animation: fadeOutDown 1s;
-	animation: fadeOutDown 1s;
+md-card.ng-leave {
+	-webkit-animation: fadeOut 1s;
+	-moz-animation: fadeOut 1s;
+	-o-animation: fadeOut 1s;
+	animation: fadeOut 1s;
+}
+
+md-button.ng-hide {
+	-webkit-animation: fadeOut 1s;
+	-moz-animation: fadeOut 1s;
+	-o-animation: fadeOut 1s;
+	animation: fadeOut 1s;
+}
+
+md-button.ng-show {
+	-webkit-animation: fadeIn 1s;
+	-moz-animation: fadeIn 1s;
+	-o-animation: fadeIn 1s;
+	animation: fadeIn 1s;
 }

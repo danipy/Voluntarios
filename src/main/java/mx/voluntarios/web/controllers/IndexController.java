@@ -10,7 +10,7 @@ public class IndexController {
 
 	@RequestMapping(method = RequestMethod.GET)
 	public String index() {
-		return "redirect:events";
+		return "index";
 	}
 
 }

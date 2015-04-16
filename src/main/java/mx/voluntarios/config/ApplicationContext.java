@@ -2,6 +2,8 @@ package mx.voluntarios.config;
 
 import java.util.List;
 
+import mx.voluntarios.security.config.SecurityConfig;
+
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
@@ -24,7 +26,7 @@ import com.fasterxml.jackson.datatype.hibernate4.Hibernate4Module;
 
 @Configuration
 @ComponentScan(basePackages = "mx.voluntarios")
-@Import({ PersistenceConfig.class, ThymeleafConfiguration.class })
+@Import({ PersistenceConfig.class, SecurityConfig.class })
 @EnableWebMvc
 @EnableSpringDataWebSupport
 public class ApplicationContext extends WebMvcConfigurerAdapter {
@@ -35,7 +37,7 @@ public class ApplicationContext extends WebMvcConfigurerAdapter {
 		registry.addResourceHandler("/resources/**").addResourceLocations("/resources/");
 		registry.addResourceHandler("/partials/**").addResourceLocations("/WEB-INF/partials/");
 	}
-	
+
 	// Provides internationalization of messages
 	@Bean
 	public ResourceBundleMessageSource messageSource() {

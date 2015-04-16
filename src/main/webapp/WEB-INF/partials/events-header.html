@@ -5,21 +5,38 @@
 				<i class="fa fa-bars fa-lg"></i>
 				<md-tooltip>Menu</md-tooltip>
 			</md-button> &nbsp;
-			<a href="/Voluntarios" ng-href="/Voluntarios" >
+			<a href="/" ng-href="/" >
+<!-- 				<img src="/Voluntarios/resources/img/Voluntarios.mx-logo.png" height="100" width="200"/> -->
 				<i class="fa fa-child fa-border fa-lg"></i>&nbsp;
 				Voluntarios.mx
 			</a>
+			<div
+				class="fb-like"
+				data-share="true"
+				data-width="450"
+				data-show-faces="true">
+			</div>
 		</div>
 		
 		<div layout="row">
-			<md-input-container ng-if="search">
-				<label>Buscar</label>
-				<input/>
-			</md-input-container>
-			<md-button ng-click="search = !search" aria-label="busqueda">
-				<i class="fa fa-search fa-lg"></i>
-				<md-tooltip>Buscar</md-tooltip>
-			</md-button>
+<!-- 			<md-input-container ng-if="search"> -->
+<!-- 				<label>Buscar</label> -->
+<!-- 				<input/> -->
+<!-- 			</md-input-container> -->
+<!-- 			<md-button ng-click="search = !search" aria-label="busqueda"> -->
+<!-- 				<i class="fa fa-search fa-lg"></i> -->
+<!-- 				<md-tooltip>Buscar</md-tooltip> -->
+<!-- 			</md-button> -->
+			<div ng-if="!authenticated">
+				<md-button ng-href="#/login">Iniciar sesi&oacute;n</md-button>
+			</div>
+			<div ng-if="authenticated">
+				<md-button ng-click="logout()">Cerrar sesi&oacute;n</md-button>
+					{{user.username}}
+				<md-button aria-label="perfil">
+					<img ng-src ="{{randomPhotoThumb}}" class="face-toolbar"/>
+				</md-button>
+			</div>
 			<md-button aria-label="notificationes">
 				<i class="fa fa-bell fa-lg"></i>
 				<md-tooltip>Notificaciones</md-tooltip>
