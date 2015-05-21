@@ -1,12 +1,13 @@
 package mx.voluntarios.repository.test;
+
+import java.util.Collections;
 import java.util.Date;
-import java.util.List;
 
 import mx.voluntarios.config.ApplicationContext;
+import mx.voluntarios.config.PersistenceConfig;
 import mx.voluntarios.domain.Ong;
 import mx.voluntarios.repository.OngRepository;
 
-import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.slf4j.Logger;
@@ -20,7 +21,8 @@ import org.springframework.transaction.annotation.Transactional;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @WebAppConfiguration
-@ContextConfiguration(classes = { ApplicationContext.class })
+@ContextConfiguration(classes = { ApplicationContext.class,
+		PersistenceConfig.class })
 public class OngRepositoryTest {
 
 	private static Logger LOG = LoggerFactory
@@ -29,7 +31,7 @@ public class OngRepositoryTest {
 	@Autowired
 	OngRepository ongRepository;
 
-	@Ignore
+	
 	@Test
 	@Modifying
 	@Transactional
@@ -37,11 +39,11 @@ public class OngRepositoryTest {
 		
 		LOG.trace(">> saveEventsTest()");
 
-		Ong ong = new Ong();
+		Ong ong = new Ong("pancho", "password", Collections.EMPTY_SET);
 		ong.setId(1000L);
 		ong.setName("FilantroposMX");
 		ong.setDescription("Organizacion no gubernamental sin fines de lucro");
-		ong.setCv((short) 1);
+		ong.setCvRequired(true);
 		ong.setDateCreated(new Date());
 		
 		ongRepository.save(ong);
@@ -51,15 +53,15 @@ public class OngRepositoryTest {
 		System.out.println(ongDb);
 	}
 
-	@Test
-	@Transactional(readOnly = true)
-	public void getVolunteersTest() {
-		List<Ong> ongs = ongRepository.findAll();
-
-		System.out.println("------ Ongs --------");
-		for (Ong ong : ongs) {
-			System.out.println(ong.getName() + " - " + ong.getId());
-		}
-	}
+//	@Test
+//	@Transactional(readOnly = true)
+//	public void getVolunteersTest() {
+//		List<Ong> ongs = ongRepository.findAll();
+//
+//		System.out.println("------ Ongs --------");
+//		for (Ong ong : ongs) {
+//			System.out.println(ong.getName() + " - " + ong.getId());
+//		}
+//	}
 
 }

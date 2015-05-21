@@ -8,15 +8,29 @@ appControllers.controller('MainCtrl', function($scope, $timeout) {
 });
 
 appControllers.controller('SidenavCtrl', ['$scope', '$mdSidenav', function($scope, $mdSidenav) {
+	console.log("sidenav ctrl")
 	
 	$scope.signInUrl = "#/login";
 	$scope.registerUrl = "#/register";
 	$scope.ongsUrl = "#/ongs";
 	$scope.eventsUrl = "#/events";
+	$scope.ongNewUrl = "#/ongs/new"
 }]);
 
 appControllers.controller('EventsHeaderCtrl', ['$scope', function($scope) {
 	//...
+}]);
+
+appControllers.controller('NewOngCtrl', ['$scope', '$resource', '$timeout', '$filter', '$routeParams', '$mdDialog',
+	function($scope, $resource, $timeout, $filter, $routeParams, $mdDialog) {
+	console.log("NewOngCtr");
+	var Ong = $resource("/Voluntarios/ongs/:ong", {ong: "@ong"});
+	console.log(Ong);
+	
+	$scope.createOng = function(ong) {
+		console.log(ong)
+		console.log("asdas");
+	}
 }]);
 
 appControllers.controller('OngCtrl',
@@ -74,6 +88,11 @@ appControllers.controller('OngCtrl',
 	      $scope.alert = 'You decided to keep your debt.';
 	    });
 	  };
+	  
+	$scope.save = function(ong) {
+		var ongObj = new Ong();
+		console.log(ongObj);
+	};
 	
 	//temp
 	var randomId = Math.floor(Math.random() * 10);
@@ -169,6 +188,7 @@ appControllers.controller('VolunteerCtrl',
 appControllers.controller('LoginCtrl',
 		['$rootScope', '$scope', '$http', '$mdToast', '$mdSidenav', '$location',
 		 function($rootScope, $scope, $http, $mdToast, $mdSidenav, $location) {
+			console.log("LoginCtrl")
 			$rootScope.isAuth = false;
 			
 			$scope.user = {};

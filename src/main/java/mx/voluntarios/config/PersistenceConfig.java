@@ -29,7 +29,7 @@ public class PersistenceConfig {
 	@Bean
 	public DataSource dataSource() {
 		DriverManagerDataSource dataSource = new DriverManagerDataSource();
-		dataSource.setDriverClassName("oracle.jdbc.OracleDriver");
+		dataSource.setDriverClassName("org.postgresql.Driver");
 		dataSource.setUrl(env.getProperty("db.url"));
 		dataSource.setUsername(env.getProperty("db.user"));
 		dataSource.setPassword(env.getProperty("db.password"));
@@ -39,7 +39,7 @@ public class PersistenceConfig {
 	@Bean
 	public EntityManagerFactory entityManagerFactory() {
 		HibernateJpaVendorAdapter vendorAdapter = new HibernateJpaVendorAdapter();
-		vendorAdapter.setDatabase(Database.ORACLE);
+		vendorAdapter.setDatabase(Database.POSTGRESQL);
 		vendorAdapter.setShowSql(true);
 		vendorAdapter.setGenerateDdl(true);
 

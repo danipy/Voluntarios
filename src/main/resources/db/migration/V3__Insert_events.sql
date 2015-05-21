@@ -1,3 +1,4 @@
+/*
 INSERT INTO EVNT (EVNT_ID,EVNT_NAME,EVNT_DATE,ONG_ID,DESCRIPTION,ADDRESS,LAT,LNG,EVNT_TIME) VALUES (1,'Luctus Institute','31/10/2014',1,'egestas hendrerit neque. In ornare sagittis felis. Donec tempor, est ac mattis','563 At, St.','51.98947','161.42474','17:00');
 INSERT INTO EVNT (EVNT_ID,EVNT_NAME,EVNT_DATE,ONG_ID,DESCRIPTION,ADDRESS,LAT,LNG,EVNT_TIME) VALUES (2,'Sed Corporation','21/10/2014',2,'egestas. Duis ac arcu. Nunc mauris. Morbi non sapien molestie orci tincidunt adipiscing. Mauris molestie pharetra nibh. Aliquam ornare,','477-5979 Scelerisque Rd.','-43.17659','-16.9627','17:00');
 INSERT INTO EVNT (EVNT_ID,EVNT_NAME,EVNT_DATE,ONG_ID,DESCRIPTION,ADDRESS,LAT,LNG,EVNT_TIME) VALUES (3,'Vestibulum Massa PC','29/01/2015',4,'sagittis. Nullam vitae diam. Proin dolor. Nulla semper tellus id nunc interdum feugiat. Sed','549-2405 Adipiscing St.','68.27424','-12.64421','17:00');
@@ -98,3 +99,4 @@ INSERT INTO EVNT (EVNT_ID,EVNT_NAME,EVNT_DATE,ONG_ID,DESCRIPTION,ADDRESS,LAT,LNG
 INSERT INTO EVNT (EVNT_ID,EVNT_NAME,EVNT_DATE,ONG_ID,DESCRIPTION,ADDRESS,LAT,LNG,EVNT_TIME) VALUES (98,'Nunc Sollicitudin Commodo LLP','18/03/2014',11,'ligula. Aenean gravida nunc sed pede. Cum sociis natoque penatibus et magnis dis parturient montes,','P.O. Box 283, 6259 Ullamcorper St.','-21.25141','108.076','10:00');
 INSERT INTO EVNT (EVNT_ID,EVNT_NAME,EVNT_DATE,ONG_ID,DESCRIPTION,ADDRESS,LAT,LNG,EVNT_TIME) VALUES (99,'Phasellus Ornare Incorporated','05/03/2014',8,'pharetra ut, pharetra sed, hendrerit a, arcu. Sed et libero. Proin mi.','Ap #275-1438 Lorem Rd.','-37.58634','73.88438','10:00');
 INSERT INTO EVNT (EVNT_ID,EVNT_NAME,EVNT_DATE,ONG_ID,DESCRIPTION,ADDRESS,LAT,LNG,EVNT_TIME) VALUES (100,'Lectus Incorporated','16/11/2014',14,'eget, ipsum. Donec sollicitudin adipiscing ligula. Aenean gravida nunc sed pede. Cum sociis natoque penatibus et magnis dis parturient montes,','519-731 Sem Av.','-64.92401','-56.23269','10:00');
+*/

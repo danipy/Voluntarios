@@ -11,6 +11,8 @@ import org.springframework.data.repository.query.Param;
 
 public interface VolunteerRepository extends JpaRepository<Volunteer, Long> {
 
+	Volunteer findOneByUsername(String username);
+
 	@Query("SELECT v FROM Volunteer v JOIN v.ongs o WHERE o.id = :ongId")
 	List<Volunteer> findByOng(@Param("ongId") Long ongId);
 

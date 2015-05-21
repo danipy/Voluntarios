@@ -1,5 +1,6 @@
 package mx.voluntarios.domain;
 
+import java.util.Collection;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
@@ -16,28 +17,48 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 import org.springframework.data.annotation.CreatedDate;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.userdetails.User;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 @Entity
 @Table(name = "VOL")
-public class Volunteer {
+public class Volunteer extends User {
+
+	private static final long serialVersionUID = 7293666934494119763L;
+
+	public Volunteer(String username, String password, boolean enabled,
+			boolean accountNonExpired, boolean credentialsNonExpired,
+			boolean accountNonLocked,
+			Collection<? extends GrantedAuthority> authorities) {
+		super(username, password, enabled, accountNonExpired,
+				credentialsNonExpired, accountNonLocked, authorities);
+		// TODO Auto-generated constructor stub
+	}
+
 	@Id
-	@Column(name = "VOL_ID")
+	@Column(name = "ID", nullable = false)
 	private Long id;
 
-	@Column(name = "VOL_NAME")
-	private String name;
-
-	@Column(name = "LAST_NAME")
-	private String lastName;
-
-	@Column(name = "USERNAME")
+	@Column(name = "USERNAME", nullable = false)
 	private String username;
 
-	@Column(name = "EMAIL")
+	@Column(name = "PASSWORD", nullable = false)
+	private String password;
+
+	@Column(name = "EMAIL", nullable = false)
 	private String email;
 
-	@Column(name = "CITY")
-	private String city;
+	@Column(name = "NAME")
+	private String name;
+
+	@Column(name = "SURNAME")
+	private String surname;
+	
+	@Column(name = "SECOND_SURNAME")
+	private String secondSurname;
 
 	@Column(name = "BIRTHDAY")
 	@Temporal(TemporalType.DATE)
@@ -49,9 +70,14 @@ public class Volunteer {
 	@Column(name = "LVL")
 	private int lvl;
 
-	@Column(name = "DATE_CREATED")
+	@Temporal(TemporalType.DATE)
+	@Column(name = "DATE_CREATED", nullable = false)
 	@CreatedDate
 	private Date dateCreated;
+
+	@Temporal(TemporalType.DATE)
+	@Column(name = "DATE_MODIFIED", nullable = false)
+	private Date dateModified;
 
 	@ManyToMany(mappedBy = "volunteers")
 	private Set<Ong> ongs = new HashSet<Ong>(0);
@@ -60,29 +86,13 @@ public class Volunteer {
 	@JoinTable(name = "EVNT_VOL", joinColumns = { @JoinColumn(name = "VOL_ID") },
 				inverseJoinColumns = { @JoinColumn(name = "EVNT_ID") })
 	private Set<Event> events = new HashSet<Event>(0);
-
+	
 	public Long getId() {
 		return id;
 	}
 
 	public void setId(Long id) {
 		this.id = id;
-	}
-
-	public String getName() {
-		return name;
-	}
-
-	public void setName(String name) {
-		this.name = name;
-	}
-
-	public String getLastName() {
-		return lastName;
-	}
-
-	public void setLastName(String lastName) {
-		this.lastName = lastName;
 	}
 
 	public String getUsername() {
@@ -93,6 +103,16 @@ public class Volunteer {
 		this.username = username;
 	}
 
+	@JsonIgnore
+	public String getPassword() {
+		return password;
+	}
+
+	@JsonProperty
+	public void setPassword(String password) {
+		this.password = password;
+	}
+
 	public String getEmail() {
 		return email;
 	}
@@ -101,12 +121,28 @@ public class Volunteer {
 		this.email = email;
 	}
 
-	public String getCity() {
-		return city;
+	public String getName() {
+		return name;
 	}
 
-	public void setCity(String city) {
-		this.city = city;
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public String getSurname() {
+		return surname;
+	}
+
+	public void setSurname(String surname) {
+		this.surname = surname;
+	}
+
+	public String getSecondSurname() {
+		return secondSurname;
+	}
+
+	public void setSecondSurname(String secondSurname) {
+		this.secondSurname = secondSurname;
 	}
 
 	public Date getBirthday() {
@@ -141,6 +177,42 @@ public class Volunteer {
 		this.dateCreated = dateCreated;
 	}
 
+	public Date getDateModified() {
+		return dateModified;
+	}
+
+	public void setDateModified(Date dateModified) {
+		this.dateModified = dateModified;
+	}
+
+	@Override
+	@Column(name = "ACCOUNT_ENABLED")
+	public boolean isEnabled() {
+		// TODO Auto-generated method stub
+		return super.isEnabled();
+	}
+
+	@Override
+	@Column(name = "ACCOUNT_EXPIRED")
+	public boolean isAccountNonExpired() {
+		// TODO Auto-generated method stub
+		return super.isAccountNonExpired();
+	}
+
+	@Override
+	@Column(name = "ACCOUNT_LOCKED")
+	public boolean isAccountNonLocked() {
+		// TODO Auto-generated method stub
+		return super.isAccountNonLocked();
+	}
+
+	@Override
+	@Column(name = "CREDENTIALS_EXPIRED")
+	public boolean isCredentialsNonExpired() {
+		// TODO Auto-generated method stub
+		return super.isCredentialsNonExpired();
+	}
+
 	public Set<Ong> getOngs() {
 		return ongs;
 	}
@@ -155,13 +227,5 @@ public class Volunteer {
 
 	public void setEvents(Set<Event> events) {
 		this.events = events;
-	}
-
-	@Override
-	public String toString() {
-		return "Volunteer [name=" + name + ", lastName=" + lastName
-				+ ", username=" + username + ", email=" + email + ", city="
-				+ city + ", birthday=" + birthday + ", exp=" + exp + ", lvl="
-				+ lvl + ", dateCreated=" + dateCreated + "]";
 	}
 }

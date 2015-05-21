@@ -24,6 +24,10 @@ app.config(['$httpProvider', '$routeProvider', '$locationProvider', '$mdThemingP
 		templateUrl: 'partials/ong.html',
 		controller: 'OngCtrl'
 	})
+	.when('/new/ong', {
+		templateUrl: 'partials/ong-new.html',
+		controller: 'NewOngCtrl'
+	})
 	.when('/volunteers/:id', {
 		templateUrl: 'partials/volunteer.html',
 		controller: 'VolunteerCtrl'

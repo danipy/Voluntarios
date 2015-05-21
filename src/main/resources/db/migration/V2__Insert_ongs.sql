@@ -1,3 +1,4 @@
+/*
 INSERT INTO ONG (ONG_ID,ONG_NAME,DESCRIPTION,ADDRESS,CV,DATE_CREATED) VALUES (1,'Bibendum Fermentum LLP','sem molestie sodales. Mauris blandit enim','4658 Eros Av.',0,'11/07/2014');
 INSERT INTO ONG (ONG_ID,ONG_NAME,DESCRIPTION,ADDRESS,CV,DATE_CREATED) VALUES (2,'Sed Dolor Fusce Corp.','malesuada id, erat.','Ap #923-1110 Aliquet Avenue',1,'30/05/2014');
 INSERT INTO ONG (ONG_ID,ONG_NAME,DESCRIPTION,ADDRESS,CV,DATE_CREATED) VALUES (3,'Cras Lorem Lorem Incorporated','tristique senectus et netus et malesuada fames ac','Ap #437-1938 Congue Ave',1,'14/07/2014');
@@ -23,3 +24,4 @@ INSERT INTO ONG (ONG_ID,ONG_NAME,DESCRIPTION,ADDRESS,CV,DATE_CREATED) VALUES (22
 INSERT INTO ONG (ONG_ID,ONG_NAME,DESCRIPTION,ADDRESS,CV,DATE_CREATED) VALUES (23,'Non LLP','lacus. Mauris non dui nec urna suscipit nonummy. Fusce fermentum fermentum arcu. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Phasellus','2011 Maecenas Av.',1,'21/08/2014');
 INSERT INTO ONG (ONG_ID,ONG_NAME,DESCRIPTION,ADDRESS,CV,DATE_CREATED) VALUES (24,'Aliquet Lobortis Limited','sollicitudin a, malesuada id, erat. Etiam vestibulum massa rutrum magna. Cras convallis convallis dolor. Quisque','Ap #481-1403 Donec Road',0,'03/04/2014');
 INSERT INTO ONG (ONG_ID,ONG_NAME,DESCRIPTION,ADDRESS,CV,DATE_CREATED) VALUES (25,'Lobortis LLC','dictum mi, ac mattis velit justo nec ante. Maecenas mi felis, adipiscing fringilla, porttitor vulputate, posuere vulputate, lacus. Cras interdum. Nunc sollicitudin commodo ipsum. Suspendisse non leo. Vivamus','P.O. Box 678, 1515 Lacinia St.',0,'12/07/2014');
+*/

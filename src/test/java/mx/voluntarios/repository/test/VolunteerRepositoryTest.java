@@ -34,7 +34,7 @@ public class VolunteerRepositoryTest {
 		
 		System.out.println("------ Voluntarios --------");
 		for (Volunteer vol : vols) {
-			System.out.println(vol.getName() + vol.getLastName() + " - "
+			System.out.println(vol.getName() + vol.getSurname() + " - "
 					+ vol.getUsername());
 		}
 	}
@@ -48,7 +48,7 @@ public class VolunteerRepositoryTest {
 		System.out.println("------ Voluntarios de Ong - " + id + " --------");
 
 		for (Volunteer vol : vols) {
-			System.out.println(vol.getName() + vol.getLastName() + " - "
+			System.out.println(vol.getName() + vol.getSurname() + " - "
 					+ vol.getUsername());
 		}
 	}

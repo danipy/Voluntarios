@@ -10,6 +10,8 @@ import org.springframework.data.repository.query.Param;
 
 public interface OngRepository extends JpaRepository<Ong, Long> {
 
+	Ong findOneByUsername(String username);
+
 	@Query("SELECT o FROM Ong o JOIN o.volunteers v WHERE v.id = :ongId")
 	List<Ong> findByVolunteer(@Param("ongId") Long ongId);
 

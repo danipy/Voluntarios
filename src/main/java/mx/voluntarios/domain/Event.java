@@ -1,5 +1,6 @@
 package mx.voluntarios.domain;
 
+import java.io.Serializable;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
@@ -15,9 +16,13 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+import org.springframework.data.annotation.CreatedDate;
+
 @Entity
 @Table(name = "EVNT")
-public class Event {
+public class Event implements Serializable {
+
+	private static final long serialVersionUID = 5982190435139421910L;
 
 	@Id
 	@Column(name = "EVNT_ID")
@@ -48,6 +53,15 @@ public class Event {
 
 	@Column(name = "LNG", length = 12)
 	private String lng;
+
+	@Temporal(TemporalType.DATE)
+	@Column(name = "DATE_CREATED", nullable = false)
+	@CreatedDate
+	private Date dateCreated;
+
+	@Temporal(TemporalType.DATE)
+	@Column(name = "DATE_MODIFIED", nullable = false)
+	private Date dateModified;
 
 	@ManyToMany(mappedBy = "events")
 	private Set<Volunteer> volunteers = new HashSet<Volunteer>(0);
@@ -124,6 +138,22 @@ public class Event {
 		this.lng = lng;
 	}
 
+	public Date getDateCreated() {
+		return dateCreated;
+	}
+
+	public void setDateCreated(Date dateCreated) {
+		this.dateCreated = dateCreated;
+	}
+
+	public Date getDateModified() {
+		return dateModified;
+	}
+
+	public void setDateModified(Date dateModified) {
+		this.dateModified = dateModified;
+	}
+
 	public Set<Volunteer> getVolunteers() {
 		return volunteers;
 	}
@@ -131,12 +161,4 @@ public class Event {
 	public void setVolunteers(Set<Volunteer> volunteers) {
 		this.volunteers = volunteers;
 	}
-
-	// @Override
-	// public String toString() {
-	// return "Event [id=" + id + ", name=" + name + ", date=" + date
-	// + ", time=" + time + ", description=" + description
-	// + ", address=" + address + ", lat=" + lat + ", lng=" + lng
-	// + "]";
-	// }
 }

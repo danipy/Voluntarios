@@ -2,6 +2,7 @@ package mx.voluntarios.repository.test;
 import static org.junit.Assert.assertTrue;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Date;
 import java.util.List;
 
@@ -95,11 +96,11 @@ public class EventRepositoryTest {
 		
 		LOG.trace(">> saveEventsTest()");
 
-		Ong ong = new Ong();
+		Ong ong = new Ong("pancho", "password", Collections.EMPTY_SET);
 		ong.setId(1000L);
 		ong.setName("FilantroposMX");
 		ong.setDescription("Organizacion no gubernamental sin fines de lucro");
-		ong.setCv((short) 1);
+		ong.setCvRequired(true);
 		ong.setDateCreated(new Date());
 		
 		ongRepository.save(ong);
